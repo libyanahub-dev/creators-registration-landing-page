@@ -1,48 +1,57 @@
-<section class="py-24 px-6">
+<section class="py-24 px-6 bg-muted/30">
   <div class="container mx-auto">
-    <!-- Teaching Methods -->
-    <div class="space-y-24 mb-32">
-      <div *ngFor="let method of teachingMethods; let i = index" class="space-y-8">
-        <!-- Connector -->
-        <div *ngIf="method.connectorBefore" class="text-center animate-fade-in-up" [style.animation-delay]="(i * 0.1) + 's'">
-          <p class="text-xl text-muted-foreground italic">{{ method.connectorBefore }}</p>
+    
+    <!-- Section Header/Intro - NEW -->
+    <div class="text-center mb-20 animate-fade-in-up">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-foreground">
+        اختر طريقتك في التعليم
+      </h2>
+      <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+        منصة ليبيانا هب تدعم كل أنواع المحتوى التعليمي - اختر الأسلوب الذي يناسبك
+      </p>
+    </div>
+
+    <!-- Teaching Methods - Centered Vertical Cards -->
+    <div class="space-y-16 mb-32">
+      <div *ngFor="let method of teachingMethods; let i = index">
+        <!-- Connector Text -->
+        <div *ngIf="method.connectorBefore" class="text-center mb-16 animate-fade-in-up">
+          <p class="text-lg text-muted-foreground/70 mb-2 italic">
+            {{ method.connectorBefore }}
+          </p>
+          <div class="w-6 h-6 text-muted-foreground/50 mx-auto">↓</div>
         </div>
 
-        <!-- Method Card -->
-        <div class="grid lg:grid-cols-2 gap-12 items-center" 
-             [class.lg:flex-row-reverse]="method.imagePosition === 'left'">
-          <!-- Image -->
-          <div class="animate-fade-in-up" 
-               [style.animation-delay]="(i * 0.1 + 0.1) + 's'"
-               [ngClass]="method.imagePosition === 'left' ? 'lg:order-2' : ''">
-            <div class="relative rounded-3xl overflow-hidden shadow-elevated">
-              <img [src]="categoryImages[i]" 
-                   [alt]="method.title" 
-                   class="w-full h-auto" />
-            </div>
-          </div>
-
-          <!-- Content -->
-          <div class="text-right space-y-6 animate-fade-in-up" 
-               [style.animation-delay]="(i * 0.1 + 0.2) + 's'"
-               [ngClass]="method.imagePosition === 'left' ? 'lg:order-1' : ''">
-            <!-- Gradient Icon -->
-            <div class="inline-flex p-4 rounded-2xl bg-gradient-to-br mb-4"
-                 [ngClass]="method.gradient">
-              <div class="w-8 h-8 text-white">📹</div>
-            </div>
-
-            <!-- Title -->
-            <h3 class="text-3xl lg:text-4xl font-bold text-foreground">
+        <!-- Centered Card -->
+        <div 
+          class="max-w-[800px] mx-auto bg-card rounded-2xl shadow-soft overflow-hidden animate-fade-in-up"
+          [style.animation-delay]="(i * 0.1) + 's'">
+          
+          <!-- Title - Centered at Top -->
+          <div class="p-8 md:p-10 pb-0">
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-foreground text-center">
               {{ method.title }}
             </h3>
-
-            <!-- Description -->
-            <p class="text-xl text-muted-foreground leading-relaxed">
+          </div>
+          
+          <!-- Category Image - Full Width -->
+          <div class="relative group">
+            <img 
+              [src]="categoryImages[i]" 
+              [alt]="method.title"
+              class="w-full h-auto transform transition-smooth hover:scale-[1.02]"
+            />
+          </div>
+          
+          <!-- Content with Padding at Bottom -->
+          <div class="p-8 md:p-10 pt-6">
+            
+            <!-- Description - Centered -->
+            <p class="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed text-center">
               {{ method.description }}
             </p>
-
-            <!-- Key Points -->
+            
+            <!-- Key Points - Centered List -->
             <div class="space-y-3 text-center">
               <p *ngFor="let point of method.points" class="text-foreground text-base">
                 {{ point }}
