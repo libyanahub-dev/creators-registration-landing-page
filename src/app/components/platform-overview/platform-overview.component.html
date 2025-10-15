@@ -1,0 +1,95 @@
+<section class="py-24 px-6">
+  <div class="container mx-auto">
+    <!-- Teaching Methods -->
+    <div class="space-y-24 mb-32">
+      <div *ngFor="let method of teachingMethods; let i = index" class="space-y-8">
+        <!-- Connector -->
+        <div *ngIf="method.connectorBefore" class="text-center animate-fade-in-up" [style.animation-delay]="(i * 0.1) + 's'">
+          <p class="text-xl text-muted-foreground italic">{{ method.connectorBefore }}</p>
+        </div>
+
+        <!-- Method Card -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center" 
+             [class.lg:flex-row-reverse]="method.imagePosition === 'left'">
+          <!-- Image -->
+          <div class="animate-fade-in-up" 
+               [style.animation-delay]="(i * 0.1 + 0.1) + 's'"
+               [ngClass]="method.imagePosition === 'left' ? 'lg:order-2' : ''">
+            <div class="relative rounded-3xl overflow-hidden shadow-elevated">
+              <img [src]="categoryImages[i]" 
+                   [alt]="method.title" 
+                   class="w-full h-auto" />
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="text-right space-y-6 animate-fade-in-up" 
+               [style.animation-delay]="(i * 0.1 + 0.2) + 's'"
+               [ngClass]="method.imagePosition === 'left' ? 'lg:order-1' : ''">
+            <!-- Gradient Icon -->
+            <div class="inline-flex p-4 rounded-2xl bg-gradient-to-br mb-4"
+                 [ngClass]="method.gradient">
+              <div class="w-8 h-8 text-white">📹</div>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-3xl lg:text-4xl font-bold text-foreground">
+              {{ method.title }}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xl text-muted-foreground leading-relaxed">
+              {{ method.description }}
+            </p>
+
+            <!-- Key Points -->
+            <div class="space-y-3 text-center">
+              <p *ngFor="let point of method.points" class="text-foreground text-base">
+                {{ point }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Message -->
+      <div class="text-center animate-fade-in-up mt-8">
+        <p class="text-2xl font-semibold text-foreground">
+          مهما كانت خبرتك - لديك مكان في ليبيانا هب
+        </p>
+      </div>
+    </div>
+
+    <!-- How It Works Flow -->
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-3xl font-bold text-center mb-12 text-foreground animate-fade-in-up">
+        كيف تعمل المنصة؟
+      </h3>
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+        <ng-container *ngFor="let step of steps; let i = index">
+          <div class="text-center p-8 rounded-3xl bg-card shadow-soft hover:shadow-elevated transition-smooth animate-fade-in-up"
+               [style.animation-delay]="((i + 5) * 0.1) + 's'">
+            <div class="inline-flex p-4 rounded-2xl gradient-primary mb-6">
+              <div class="w-8 h-8 text-white">
+                <span *ngIf="step.icon === 'camera'">📹</span>
+                <span *ngIf="step.icon === 'users'">👥</span>
+                <span *ngIf="step.icon === 'wallet'">💰</span>
+              </div>
+            </div>
+            <h4 class="text-xl font-bold mb-3 text-foreground">
+              {{ step.title }}
+            </h4>
+            <p class="text-muted-foreground">
+              {{ step.subtitle }}
+            </p>
+          </div>
+          <div *ngIf="i < steps.length - 1" 
+               class="hidden md:flex justify-center items-center animate-fade-in-up" 
+               [style.animation-delay]="((i + 5.5) * 0.1) + 's'">
+            <div class="w-8 h-8 text-primary">→</div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
