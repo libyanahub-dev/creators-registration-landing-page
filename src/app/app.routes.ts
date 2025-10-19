@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 export const routes: Routes = [
   // Default redirect to home (will be intercepted by guard if not authenticated)
@@ -26,13 +27,13 @@ export const routes: Routes = [
     title: 'الصفحة الرئيسية - ليبيانا هب'
   },
   
-  // Registration page - PROTECTED (will be added later)
-  // {
-  //   path: 'register',
-  //   component: RegistrationComponent,
-  //   canActivate: [authGuard],
-  //   title: 'التسجيل كمبدع - ليبيانا هب'
-  // },
+  // Registration page - PROTECTED
+  {
+    path: 'register',
+    component: RegistrationComponent,
+    canActivate: [authGuard],
+    title: 'التسجيل كمبدع - ليبيانا هب'
+  },
   
   // Wildcard - redirect to home
   {

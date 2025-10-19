@@ -4,6 +4,7 @@ import { HeroSectionComponent } from '../hero-section/hero-section.component';
 import { PlatformOverviewComponent } from '../platform-overview/platform-overview.component';
 import { BenefitsSectionComponent } from '../benefits-section/benefits-section.component';
 import { VideoPreviewComponent } from '../video-preview/video-preview.component';
+import { StickyCtaComponent } from '../sticky-cta/sticky-cta.component';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { VideoPreviewComponent } from '../video-preview/video-preview.component'
     HeroSectionComponent,
     PlatformOverviewComponent,
     BenefitsSectionComponent,
-    VideoPreviewComponent
+    VideoPreviewComponent,
+    StickyCtaComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

@@ -1,0 +1,34 @@
+/* Registration component styles */
+
+/* Smooth animations */
+input, textarea, select, button {
+  transition: all 0.2s ease;
+}
+
+/* Input focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  transform: translateY(-1px);
+}
+
+/* Custom scrollbar for step indicators */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 2px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 2px;
+}
+
+/* Video preview */
+video {
+  max-height: 400px;
+  object-fit: contain;
+}
