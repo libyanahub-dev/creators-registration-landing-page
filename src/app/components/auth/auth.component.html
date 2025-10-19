@@ -1,0 +1,98 @@
+<div class="min-h-screen flex items-center justify-center gradient-subtle px-4">
+  <!-- Background decorations -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-20 left-20 w-72 h-72 gradient-primary rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 gradient-primary rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- Auth Card -->
+  <div class="relative z-10 w-full max-w-md">
+    <div class="bg-card rounded-3xl shadow-elevated p-8 md:p-10 animate-fade-in-up">
+      
+      <!-- Logo and Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <div class="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
+            <span class="text-white font-bold text-2xl">ل</span>
+          </div>
+          <span class="text-2xl font-bold bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent">
+            ليبيانا هب
+          </span>
+        </div>
+        
+        <h1 class="text-3xl font-bold text-foreground mb-2">
+          مرحباً بك
+        </h1>
+        <p class="text-muted-foreground text-lg">
+          أدخل كود الدخول للوصول إلى المنصة
+        </p>
+      </div>
+
+      <!-- OTP Input -->
+      <div class="mb-6">
+        <label class="block text-right text-sm font-medium text-foreground mb-4">
+          كود الدخول (4 أرقام)
+        </label>
+        
+        <div class="flex gap-3 justify-center" dir="ltr">
+          <div *ngFor="let digit of codeDigits; let i = index" class="flex-1 max-w-[70px]">
+            <input
+              [id]="'digit-' + i"
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]"
+              maxlength="1"
+              [value]="codeDigits[i]"
+              (keydown)="onKeyDown($event, i)"
+              (paste)="i === 0 ? onPaste($event) : null"
+              [disabled]="isLoading"
+              autocomplete="off"
+              class="w-full h-16 text-center text-2xl font-bold border-2 rounded-xl
+                     focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+                     transition-all duration-200
+                     {{errorMessage ? 'border-red-500' : 'border-border'}}
+                     {{isLoading ? 'bg-muted cursor-not-allowed' : 'bg-background'}}"
+              [class.animate-shake]="errorMessage"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="mb-6 animate-fade-in-up">
+        <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-right">
+          <p class="text-red-600 text-sm font-medium">
+            {{ errorMessage }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="text-center mb-6">
+        <div class="inline-flex items-center gap-2 text-muted-foreground">
+          <div class="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <span>جاري التحقق من الكود...</span>
+        </div>
+      </div>
+
+      <!-- Help Text -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-muted-foreground">
+          لديك كود دخول صالح؟ أدخله أعلاه للوصول إلى المنصة
+        </p>
+      </div>
+
+      <!-- Test Codes Info (Remove in production) -->
+      <div class="mt-6 p-4 bg-muted/50 rounded-xl text-right">
+        <p class="text-xs text-muted-foreground mb-2 font-medium">أكواد تجريبية:</p>
+        <div class="space-y-1 text-xs text-muted-foreground">
+          <p>✅ 1234 - كود جديد</p>
+          <p>✅ 5678 - كود مستخدم جزئياً</p>
+          <p>✅ 0000 - كود مستخدم مرة واحدة</p>
+          <p>❌ 9999 - كود منتهي</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

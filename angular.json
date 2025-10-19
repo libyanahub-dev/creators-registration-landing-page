@@ -9,6 +9,13 @@
       "skipTests": true,
       "standalone": true,
       "style": "css"
+    },
+    "@schematics/angular:service": {
+      "type": "service",
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
     }
   },
   "projects": {
